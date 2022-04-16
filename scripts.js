@@ -6,6 +6,7 @@ let progress = player.querySelector('.progress');
 let progressBar = player.querySelector('.progress__filled');
 let skipBtn = player.querySelectorAll('[data-skip]');
 let ranges = player.querySelectorAll('.player__slider');
+let fullScreen = player.querySelector('.player__button.fullScreenBtn')
 
 // creating functions for all
 let paused;
@@ -39,6 +40,11 @@ function scrub(e){
 	console.log(scrubTime);
 }
 
+// make player full screen
+function makeFull(){
+    video.webkitEnterFullscreen();
+}
+
 // hooking up every element
 video.addEventListener('click', pauseOrPlay);
 video.addEventListener('play', updateButton);
@@ -53,3 +59,6 @@ progress.addEventListener('click', scrub);
 progress.addEventListener('mousemove', (e) => mousedown && scrub(e));
 progress.addEventListener('mouseup', () => mousedown = false );
 progress.addEventListener('mousedown', () => mousedown = true );
+
+// full screen
+fullScreen.addEventListener('click', makeFull);
